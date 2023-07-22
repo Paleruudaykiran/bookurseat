@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+              table {
+    border-collapse: collapse;
+    width: 100%;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  } 
+  table th {
+  background-color: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
+}
+table tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+
+table tr:hover td {
+  background-color: #ffedcc;
+}
+table td {
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+.split{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.btn {
+    background-color: inherit;
+    border:1px solid blue;
+    display: block;
+    padding:5px 10px;
+    border-radius: 2px;
+    font-size: 1.2rem;
+}
+.btn:hover {
+    background-color: skyblue;
+}
+#addbus {
+    background-color:skyblue;
+    box-shadow: 1px 2px black;
+    padding:5px 10px;
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.form-group {
+    margin:15px 5px;
+}
+.form-group > * {
+    display: inline-block;
+}
+.form-group input {
+    border: none;
+    background-color: inherit;
+    color:black;
+    border-bottom: 1px solid black;
+}
+.form-group input:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+}
+.btn {
+            display:block;
+            padding:5px 10px;
+            background-color: inherit;
+            border: 1px solid black;
+        }
+.btn:hover {
+            border: 1px solid darkblue;
+        }
+        .search {
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="getDetails();">
+    <div class="split">
+        <h3 style="color:#333">Welcome Admin</h3>
+        <button class="btn" onclick="displayForm();">Add</button>
+    </div>
+    <div class="form-group search">
+        <input type="text" id="ssource" placeholder="Boarding point"/>
+        <input type="text" id="sdestination" placeholder="Stop Point" />
+        <button onclick="searchForBus();" class="btn" style="text-align: center;margin:10px auto;">Search</button>
+    </div>
+    <div id="addbus" style="display:none">
+        <div class="form-group">
+            <label for="bid">ID</label>
+            <input class="bid" type="text" placeholder="Id of bus" id="bid" name="bid" >
+        </div>
+        <div class="form-group">
+            <label for="tname">Travels name</label>
+            <input class="tname" type="text" placeholder="Travels name" id="tname" name="tname" >
+        </div>
+        <div class="form-group">
+            <label for="boards">Starting Point</label>
+            <input class="boards" type="text" placeholder="Boarding at" id="boards" name="boards">
+        </div>
+        <div class="form-group">
+            <label for="stops">Stoping Point</label>
+            <input class="stops" type="text" placeholder="Stops at" id="stops" name="stops">
+        </div>
+        <div class="form-group">
+            <label for="savail">Seats Available</label>
+            <input class="savail" type="number" placeholder="Seats Available" id="savail" name="savail">
+        </div>
+        <div class="form-group">
+            <label for="cost">Cost</label>
+            <input class="cost" type="number" placeholder="Cost" id="cost" name="cost">
+        </div>
+        <button style="text-align: center;margin-left:auto;margin-right:auto;" class="btn" onclick="return addBus();">Confirm Details</button>
+    </div>
+    <div>
+        <table id="bavil" >
+            <thead >
+                <th>Id</th>
+                <th>Travels</th>
+                <th>Boarding At</th>
+                <th>Stops At</th>
+                <th>Total Seats</th>
+                <th>Cost</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>101</td>
+                    <td>Morning Star</td>
+                    <td>Bangalore</td>
+                    <td>Parchoor</td>
+                    <td>28</td>
+                    <td>1800</td>
+                    <td><button class="btn" id="delete" onclick="deleterow()">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Morning Star</td>
+                    <td>Bangalore</td>
+                    <td>Parchoor</td>
+                    <td>28</td>
+                    <td>1800</td>
+                    <td><button class="btn" id="delete">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Morning Star</td>
+                    <td>Bangalore</td>
+                    <td>Parchoor</td>
+                    <td>28</td>
+                    <td>1800</td>
+                    <td><button class="btn" id="delete">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Morning Star</td>
+                    <td>Bangalore</td>
+                    <td>Parchoor</td>
+                    <td>28</td>
+                    <td>1800</td>
+                    <td><button class="btn" id="delete">Delete</button></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./addBusDetails.js"></script>
+</body>
+</html>

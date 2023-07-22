@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking confirmed</title>
+    <style>
+        .card {
+            background-color: aliceblue;
+            border: 1px solid black;
+            margin:10px auto;
+            padding:10px;
+            width:500px;
+        }
+        .header {
+            color:blue;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        #busdetails {
+            background-color: orange;
+            width:400px;
+            display: inline;
+        }
+        .ditem {
+            display: flex;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom: 1px solid skyblue;
+            padding:5px;
+        }
+        .ditem:hover {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body onload="loadDetails();">
+    <div class="card">
+        <h3 class="header">Booking Confirmed!</h3>
+        <div id="busdetails">
+            <h4 style="text-align: center;margin-top:5px;padding:5px">Here are details for Your reference</h4>
+            <div class="ditem">
+                <p>PNR no: </p>
+                <p id="pnr"></p>
+            </div>
+            <div class="ditem">
+                <p>Bus Id: </p>
+                <p id="tid"></p>
+            </div>
+            <div class="ditem">
+                <p>Travels Name</p>
+                <p id="tname"></p>
+            </div>
+            <div class="ditem">
+                <p>Boarding At</p>
+                <p id="boards"></p>
+            </div>
+            <div class="ditem">
+                <p>Stops At</p>
+                <p id="stops"></p>
+            </div>
+            <div class="ditem">
+                <p>Total Price</p>
+                <p id="tprice"></p>
+            </div>
+            <div class="ditem">
+                <p>Your Seats</p>
+                <p id="yseats"></p>
+            </div>
+            <div>
+                Person details: 
+                <div class="ditem">
+                    <p>Name: </p>
+                    <p id="cname"></p>
+                </div>
+                <div class="ditem">
+                    <p>Email: </p>
+                    <p id="email"></p>
+                </div>
+                <div class="ditem">
+                    <p>Mobile no: </p>
+                    <p id="mno"></p>
+                </div>
+            </div>
+        </div>
+        <div class="ditem">
+            <button onclick="print()">Print</button>
+            <a href="./home.html">Go home</a>
+        </div>
+    </div>
+    <script src="./confirmBooking.js"></script>
+</body>
+</html>

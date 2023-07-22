@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * { 
+  margin:0; 
+  box-sizing:border-box;
+}
+section { 
+  width:400px;
+  margin:10px auto;
+}
+.container { 
+   border: 1px solid black;
+   margin:2px 2px 5px 5px;
+   padding: 5px;
+   background-color: aliceblue;
+}
+.header { 
+   text-align:center;
+   display:block; 
+   padding:5px;
+   color : rgb(157, 118, 210); 
+}
+#signup-form { 
+   margin:20px 0;
+}
+.form-field * { 
+   display:block;
+   margin:5px;
+}
+label { 
+   color:black;
+   display:block;
+   margin:5px;
+}
+input {
+    line-height:1.5rem;
+    border-style:none;
+    border-bottom:1px solid black;
+    display:block;
+    background-color: inherit;
+}
+input:focus { 
+    background-color:inherit;
+    outline:none;
+    border-bottom:2px solid black;
+}
+.message { 
+   display:flex;
+}
+.message > * { 
+    width:100%;
+}
+i { 
+   position:absolute;
+}
+.fa-check,.fa-exclamation { 
+     visibility:hidden;
+     width:17px; 
+     
+}
+.fa-check { 
+     color:black;
+     background-color:green;
+     border-radius:50%;
+}
+.fa-exclamation { 
+     text-align:center;
+     width:15px;
+     color:black;
+     background-color:red;
+     border-radius:50%;
+}
+small { 
+   text-align:right;
+   visibility:hidden;
+   margin-left:25px;
+}
+button { 
+  width:100%;
+  background-color:inherit; 
+  color:red;
+  border:1px solid black;
+  padding:5px;
+  text-transform:uppercase;
+}
+button:hover { 
+  background-color:rgb(157, 118, 210); 
+  color:white;
+}
+.setwidth {
+    width:90%;
+}
+.btn {
+            display:block;
+            width:100%;
+            padding:2px;
+            background-color: inherit;
+            border: 1px solid black;
+        }
+        .btn:hover {
+            background-color: skyblue;
+        }
+</style>
+</head>
+<body>
+    <section>
+       <p id="success"></p>
+        <h3 class="header">Customer registration</h3>
+        <div class="container"> 
+            <form action="" target="_blank" autocomplete="on" id="signup-form" onsubmit="return validate()">
+                <form method="POST" name="myform" id="signup-form" onsubmit = "return validate()"> 
+                    <div class="form-field"> 
+                      <label for="name">Name</label> 
+                      <input class="setwidth" name="name" id="name" placeholder="Enter your name"></input>
+                    <div class="message">
+                     <i class="fa fa-check" aria-hidden="true"></i>
+                     <i class="fa fa-exclamation" aria-hidden="true"></i>
+                      <small>Error Message</small>
+                    </div>
+                    </div>
+                    <div class="form-field"> 
+                      <label for="email">Email</label> 
+                      <input class="setwidth" required name='email' id="email" placeholder="Enter your email"></input>
+                      <div class="message">
+                        <i class="fa fa-check" id='correct' aria-hidden="true"></i>
+                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        <small>Error Message</small>
+                      </div>
+                    </div>
+                    <div class="form-field"> 
+                      <label for="pass">Password</label> 
+                      <input class="setwidth" required name="pass" id="pass" placeholder="password">
+                      <div class="message">
+                     <i class="fa fa-check" aria-hidden="true"></i>
+                     <i class="fa fa-exclamation" aria-hidden="true"></i>
+                      <small>Error Message</small>
+                      </div>
+                    </div>
+                    <div class="form-field"> 
+                      <label for="repass">Retype password</label> 
+                      <input class="setwidth" required name="repass" id="repass" placeholder="retype password">
+                      <div class="message">
+                         <i class="fa fa-check" aria-hidden="true"></i>
+                         <i class="fa fa-exclamation" aria-hidden="true"></i> 
+                         <small>Error Message</small>
+                      </div>
+                    </div>
+                    <div class="form-field"> 
+                        <label for="gender">Gender</label> 
+                        <input style="display:inline;" name="gender" id="male" type="radio" value="Male">
+                        <label style="display:inline;" for="male">Male</label>
+                        <input style="display:inline;" name="gender" id="female" type="radio" value="Female">
+                        <label style="display:inline;" for="female">Female</label>
+                        <div class="message">
+                           <i class="fa fa-check" aria-hidden="true"></i>
+                           <i class="fa fa-exclamation" aria-hidden="true"></i> 
+                           <small>Error Message</small>
+                        </div>
+                      </div>
+                    <input class="btn" type='submit' value="submit"></button>
+            </form>
+        </div>
+    </section>
+    <script>
+      const form = document.getElementById('signup-form');
+      const name = document.getElementById('name'); 
+      const email = document.getElementById('email'); 
+      const pass = document.getElementById('pass'); 
+      const repass = document.getElementById('repass');
+      //alert(form);
+      form.addEventListener('submit',(e) => { 
+          e.preventDefault();
+      });
+      function validate() { 
+          if(name.value == '' || name.value == null) { 
+          setError(name,'please enter a valid name');
+        }
+        else { 
+          setCorrect(name,'correct');
+       }
+
+  let f = 1;
+  // check for password 
+  var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\W]){7,}/
+  if(reg.test(pass.value) == false) setError(pass,'please make your password strong'); 
+  else setCorrect(pass,'correct');
+  if(pass.value === repass.value) setCorrect(repass,'correct'); 
+  else {
+    setError(repass,'password must match');
+    f = 0;
+  }
+  
+  // check for email 
+  var regexp = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/
+  if(regexp.test(email.value) == false) {
+    setError(email,'please provide a valid mailid'); 
+    f = 0;
+  }
+  else setCorrect(email,'correct');
+ if(f == 1) {
+  let p = document.getElementById('success');
+  p.innerText = 'Successfully registered';
+ }
+}
+function setCorrect(s,message) { 
+      console.log(s.parentNode.childNodes[5].childNodes);
+       var children = s.parentNode.childNodes[5]; 
+       var i = children.childNodes[1]; 
+       var small =children.childNodes[5]; 
+       i.style.visibility = 'visible';
+       small.style.visibility = 'visible';
+       small.style.color = "green"; 
+       small.innerText = message;
+      
+}
+function setError(s,message) { 
+      console.log(s.parentNode.childNodes[5].childNodes);
+       var children = s.parentNode.childNodes[5]; 
+       var i = children.childNodes[3]; 
+       var small =children.childNodes[5]; 
+       i.style.visibility = 'visible';
+       small.style.visibility = 'visible';
+       small.style.color = "red"; 
+       small.innerText = message;
+      
+}
+    </script>
+</body>
+</html>
